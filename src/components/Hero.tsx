@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState, Suspense, lazy } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
-
-const Spline = lazy(() => import("@splinetool/react-spline"));
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -11,8 +9,6 @@ const Hero = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const splineRef = useRef<HTMLDivElement>(null);
-  const [splineError, setSplineError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const tl = gsap.timeline({ delay: 0.3 });
@@ -145,29 +141,15 @@ const Hero = () => {
           ref={splineRef}
           className="relative h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center"
         >
-          <div className="w-full h-full glass rounded-3xl overflow-hidden glow-violet flex items-center justify-center">
-            {!splineError ? (
-              <Suspense fallback={<div className="text-center"><p className="text-muted-foreground">Loading 3D scene...</p></div>}>
-                <Spline 
-                  scene="https://my.spline.design/beepboopbemyvalentine-CJAXMh4IfmCMjxoFMLklCuX2/"
-                  onLoad={() => {
-                    console.log("Spline loaded successfully");
-                    setIsLoading(false);
-                  }}
-                  onError={(error) => {
-                    console.error("Spline failed to load:", error);
-                    setSplineError(true);
-                    setIsLoading(false);
-                  }}
-                />
-              </Suspense>
-            ) : (
-              <div className="text-center">
-                <div className="text-6xl mb-4">🎨</div>
-                <p className="text-muted-foreground">3D Scene</p>
-                <p className="text-xs text-muted-foreground mt-2">Unable to load scene</p>
-              </div>
-            )}
+          <div className="w-full h-full glass rounded-3xl overflow-hidden glow-violet">
+            <iframe
+              src="https://my.spline.design/beepboopbemyvalentine-CJAXMh4IfmCMjxoFMLklCuX2/"
+              frameBorder="0"
+              width="100%"
+              height="100%"
+              style={{ border: "none" }}
+              title="Spline 3D Scene"
+            />
           </div>
         </div>
       </div>

@@ -143,7 +143,7 @@ const Hero = () => {
         >
           <div className="w-full h-full glass rounded-3xl overflow-hidden glow-violet">
             <iframe
-              src="https://my.spline.design/beepboopbemyvalentine-CJAXMh4IfmCMjxoFMLklCuX2/"
+              src="https://my.spline.design/beepboopbemyvalentine-Ve4biM2TCow13YBhNech2C87/"
               frameBorder="0"
               width="100%"
               height="100%"
